@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  state: MyString
+  team_1_points: 1
+  team_2_points: 1
+  team_1_x: 1
+  team_2_x: 1
+
+two:
+  state: MyString
+  team_1_points: 1
+  team_2_points: 1
+  team_1_x: 1
+  team_2_x: 1
