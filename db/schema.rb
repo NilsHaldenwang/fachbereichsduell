@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105150125) do
+ActiveRecord::Schema.define(:version => 20121105155839) do
 
   create_table "estimation_answers", :force => true do |t|
     t.float    "value"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(:version => 20121105150125) do
     t.integer  "team_2_points"
     t.integer  "team_1_x"
     t.integer  "team_2_x"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "question_number"
   end
 
   create_table "questions", :force => true do |t|
@@ -37,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20121105150125) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "questions", ["number"], :name => "index_questions_on_number", :unique => true
 
   create_table "text_answers", :force => true do |t|
     t.string   "content"

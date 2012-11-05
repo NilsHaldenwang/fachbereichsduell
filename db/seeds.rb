@@ -29,5 +29,6 @@ GameState.create!(
   team_1_points: 0,
   team_2_points: 0,
   team_1_x: 0,
-  team_2_x: 0
+  team_2_x: 0,
+  question_number: 1
 )

@@ -14,7 +14,7 @@ module ActiveRecord
         end
 
         define_method("#{const}!") do
-          self.send("#{attribute}=", self.class.const_get(const_name))
+          self.send("update_attribute", attribute, self.class.const_get(const_name))
         end
       end
     end
