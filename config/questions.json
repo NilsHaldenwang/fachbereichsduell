@@ -1,0 +1,38 @@
+[
+{
+  "text": "Wie alt sind Sie?",
+  "question_type": "estimation"
+},
+{
+  "text": "Was ist Ihr Lieblingsessen?",
+  "question_type": "choices",
+  "answers": [
+  { "content": "Pizza" },
+  { "content": "Pasta" },
+  { "content": "Brot" },
+  { "content": "Schnitzel" },
+  { "content": "Kuchen" },
+  { "content": "Pommes" },
+  { "content": "Eis" },
+  { "content": "Grießbrei" }
+  ]
+},
+{
+  "text": "Wie groß sind Sie?",
+  "question_type": "estimation"
+},
+{
+  "text": "Wer kommt gerne mal zu spät zur Übung?",
+  "question_type": "choices",
+  "answers": [
+  { "content": "Wolfgang 1" },
+  { "content": "Wolfgang 2" },
+  { "content": "Wolfgang 3" },
+  { "content": "Wolfgang 4" },
+  { "content": "Wolfgang 5" },
+  { "content": "Wolfgang 6" },
+  { "content": "Wolfgang 7" },
+  { "content": "Grießbrei" }
+  ]
+}
+]
