@@ -1,1 +1,8 @@
-<h1>Bitte warten,...</h1>
+<h2 style="margin-bottom: 30px;">Im Moment gibt es keine zu beantwortende Frage.</h2>
+
+<%= form_tag '/questions/show', method: :get do %>
+	<%= bootstrap_submit_button "... und jetzt?" %>
+<% end %>
+
+<!-- Reload Checking (see questions.js) -->
+<script type="text/javascript">enable_reload_check();</script>
