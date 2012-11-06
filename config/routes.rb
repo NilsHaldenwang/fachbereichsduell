@@ -1,4 +1,10 @@
 Fachbereichsduell::Application.routes.draw do
+  get "questions/show"
+
+  get "questions/reload_check"
+
+  post "questions/submit_answer"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

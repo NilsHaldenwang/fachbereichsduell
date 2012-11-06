@@ -1,0 +1,11 @@
+<h2 style="margin-bottom: 30px;"><%= @question.text %></h2>
+
+<%= form_tag '/questions/submit_answer', method: :post do %>
+  <div>
+    <% @question.text_answers.each do |answer| %>
+      <%= bootstrap_submit_button answer.content, "answer_id", answer.id  %>
+      <div style="margin-top: 20px;"></div>
+    <% end %>
+  </div>
+  <%= hidden_field_tag :question_type, Question::QUESTION_TYPE_ESTIMATION %>
+<% end %>
