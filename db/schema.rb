@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105155839) do
+ActiveRecord::Schema.define(:version => 20121106110439) do
+
+  create_table "answerers", :force => true do |t|
+    t.string   "ip"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "answerers", ["question_id"], :name => "index_answerers_on_question_id"
 
   create_table "estimation_answers", :force => true do |t|
     t.float    "value"

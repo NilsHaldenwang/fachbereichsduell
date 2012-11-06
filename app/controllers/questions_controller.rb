@@ -35,31 +35,34 @@ class QuestionsController < ApplicationController
       @question = @game_state.current_question
       
       #todo: pruefen ob der fragende die frage bereits beantwortet hat
-      
+      unless @question.was_answered_by?(request.remote_ip)
 
-      if @question.question_type == Question::QUESTION_TYPE_CHOICES
-
-      elsif @question.question_type == Question::QUESTION_TYPE_ESTIMATION
-        @answer = EstimationAnswer.create({value: params[:value].gsub(",","."), question: @question})
-        if @answer.valid?
-          #eingeloggt
-          @given_answer = @answer.value
-          render 'answer_saved'
-        else
-          #ging nicht (ggf. invalid value)
-          render text: "ging nicht"
+        if @question.question_type == Question::QUESTION_TYPE_CHOICES
+          #todo
+        elsif @question.question_type == Question::QUESTION_TYPE_ESTIMATION
+          @answer = EstimationAnswer.create({value: params[:value].gsub(",","."), question: @question})
+          if @answer.valid?
+            #eingeloggt
+            @given_answer = @answer.value
+            #note that user answered
+            @question.was_answered_by!(request.remote_ip)
+          
+            render 'answer_saved'
+          else
+            #ging nicht (ggf. invalid value)
+            render text: "ging nicht"
+          end
         end
-      end
 
+      else
+        #zu spät
+        render text: "schon geantwortet"
+      end
+    
     else
-      #zu spät
+      #schon geantwortet
       render text: "zu spaet"
     end
-
-
-    
-
-
   end
 
 end
