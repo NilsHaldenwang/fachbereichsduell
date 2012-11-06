@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121106110439) do
+ActiveRecord::Schema.define(:version => 20121106152953) do
 
   create_table "answerers", :force => true do |t|
     t.string   "ip"
@@ -52,11 +52,12 @@ ActiveRecord::Schema.define(:version => 20121106110439) do
 
   create_table "text_answers", :force => true do |t|
     t.string   "content"
-    t.string   "state",       :default => "hidden"
-    t.integer  "count",       :default => 0
+    t.string   "state",            :default => "hidden"
+    t.integer  "count",            :default => 0
     t.integer  "question_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.integer  "answered_by_team"
   end
 
 end

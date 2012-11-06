@@ -1,0 +1,7 @@
+<%= form_tag url, method: "POST" do %>
+  <button class='btn btn-large <%= css_classes %>' name='submit' value='submit' type='submit'><%= text %></button>
+
+  <% post_params.each do |key, value| %>
+    <%= hidden_field_tag key, value %>
+  <% end %>
+<% end %>

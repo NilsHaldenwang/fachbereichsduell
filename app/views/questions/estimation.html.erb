@@ -2,7 +2,7 @@
 
 <%= form_tag '/questions/submit_answer', method: :post do %>
   <div>
-    <%= number_field_tag :value, nil, class: "input-block-level", style: "margin-bottom: 30px; text-align: center; font-size: 36px; height: 54px" %>
+    <%= text_field_tag :value, nil, class: "input-block-level", style: "margin-bottom: 30px; text-align: center; font-size: 36px; height: 54px" %>
     <%= bootstrap_submit_button "Antworten" %>
   </div>
   <%= hidden_field_tag :question_type, Question::QUESTION_TYPE_ESTIMATION %>

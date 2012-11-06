@@ -1,4 +1,12 @@
 Fachbereichsduell::Application.routes.draw do
+  get "admin/index"
+  post "admin/change_state"
+  post "admin/assign_answer"
+  post "admin/remove_answer"
+  post "admin/add_x"
+  post "admin/next_question"
+  post "admin/remove_estimation_answer"
+
   get "questions/show"
 
   get "questions/reload_check"
