@@ -6,10 +6,17 @@ class QuestionsController < ApplicationController
     if @game_state.showing_question?
       @question = @game_state.current_question
 
-      if @question.choices?
-        render 'choices'
-      elsif @question.estimation?
-        render 'estimation'
+      unless @question.was_answered_by?(request.remote_ip)
+
+        if @question.choices?
+         render 'choices'
+        elsif @question.estimation?
+         render 'estimation'
+        end
+
+      else
+        #question already answered
+        render 'answer_already_answered'
       end
     else
       render 'please_wait'
@@ -20,7 +27,7 @@ class QuestionsController < ApplicationController
     @game_state = GameState.instance
 
     reload = nil
-    if @game_state.showing_question?
+    if @game_state.showing_question? && !@game_state.current_question.was_answered_by?(request.remote_ip)
       reload = true
     end
     
@@ -38,7 +45,20 @@ class QuestionsController < ApplicationController
       unless @question.was_answered_by?(request.remote_ip)
 
         if @question.question_type == Question::QUESTION_TYPE_CHOICES
-          #todo
+          #find correct answer
+          chosen_answer = TextAnswer.find(params[:answer_id])
+          if !chosen_answer
+            #render error
+            #todo
+            flash[:error] = "Die Antwort konnte leider nicht verarbeitet werden."
+            redirect_to :show
+          else
+            #atomically increment count
+            chosen_answer.class.update_all("count = (count + 1)", "id = #{chosen_answer.id}")
+            #we assume that this did work
+            @given_answer = chosen_answer.content
+            render 'answer_saved'
+          end
         elsif @question.question_type == Question::QUESTION_TYPE_ESTIMATION
           @answer = EstimationAnswer.create({value: params[:value].gsub(",","."), question: @question})
           if @answer.valid?
@@ -50,18 +70,19 @@ class QuestionsController < ApplicationController
             render 'answer_saved'
           else
             #ging nicht (ggf. invalid value)
-            render text: "ging nicht"
+            #todo
+            flash[:error] = "Die Antwort #{@answer.value} konnte leider nicht verarbeitet werden."
+            redirect_to :show
           end
         end
 
       else
-        #zu spät
-        render text: "schon geantwortet"
-      end
-    
-    else
       #schon geantwortet
-      render text: "zu spaet"
+      render 'answer_already_answered' 
+      end
+    else
+      #zu spät
+      render 'answer_too_late'
     end
   end
 

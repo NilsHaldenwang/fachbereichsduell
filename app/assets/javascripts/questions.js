@@ -1,7 +1,7 @@
 var perform_reload_check_and_reload_if_necessary = function() {
 	$.getJSON('reload_check', function (data) {
 		if(data.reload) {
-			location.reload();
+			window.location = 'show';
 		}
 	});
 };
