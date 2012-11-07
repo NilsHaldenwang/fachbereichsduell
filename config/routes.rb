@@ -1,4 +1,6 @@
 Fachbereichsduell::Application.routes.draw do
+  get "presentation/index"
+
   get "admin/index"
   post "admin/change_state"
   post "admin/assign_answer"
