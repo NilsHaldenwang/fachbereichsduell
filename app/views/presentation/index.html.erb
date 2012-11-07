@@ -20,76 +20,119 @@
     <style type="text/css">
       body {
         background-image: url('<%= asset_path "bg-mesh.png" %>');
-        font-family: 'arcaderegular';
-        font-size: 20pt;
-        color: #00ff00;
+        font-family: 'unibody8';
+        font-size: 30px;
+        color: rgb(140, 255, 0);
         margin: 0px;
         padding: 0px;
       }
 
+      table {
+        font-size: 30px;
+      }
+
       @font-face {
-        font-family: 'arcaderegular';
-        src: url('<%= asset_path "arcade-webfont.eot" %>');
-        src: url('<%= asset_path "arcade-webfont.woff" %>') format('woff'),
-        url('<%= asset_path "arcade-webfont.ttf" %>') format('truetype'),
-        url('<%= asset_path "arcade-webfont.svg#arcaderegular" %>') format('svg');
+        font-family: 'unibody8';
+        src: url('<%= asset_path "unibody8-regular.eot" %>');
+        src: url('<%= asset_path "unibody8-regular.woff" %>') format('woff'),
+        url('<%= asset_path "unibody8-regular.ttf" %>') format('truetype'),
+        url('<%= asset_path "unibody8-regular.svg#unibody8-regular" %>') format('svg');
         font-weight: normal;
         font-style: normal;
       }
 
       .container {
-        width: 1002px;
-        height: 746px;
+        width: 1022px;
+        height: 766px;
         margin: 0px;
-        padding: 10px;
-        border: 1px solid white;
       }
 
-      table {
-        font-size: 20pt;
+      .footer {
+        margin-top: 10px;
+        background-image: url('<%= asset_path "bg-mesh-green.png" %>');
+        color: black;
+        font-size: 45px;
       }
+
+      .footer-line {
+        background-image: url('<%= asset_path "bg-mesh-green.png" %>');
+        height: 5px;
+      }
+
+      .footer-container {
+        position: absolute;
+        left: 0;
+        top: 693px;
+        width: 1022px;
+      }
+
     </style>
   </head>
   <body>
     <div class="container">
-      <p style="text-align: center;">Wer kommt gerne mal zu spät zur Übung?</p>
+      <p style="text-align: center; font-size: 30px;">Wer kommt gerne mal zu spät zur Übung, oft, wieder und wieder?</p>
 
       <center>
         <table cellspacing="10px">
           <tr>
-            <td>1.) ................................................................................</td>
+            <td>1</td>
+            <td>.............................................</td>
             <td>""</td>
           </tr>
           <tr>
-            <td>2.) ................................................................................</td>
+            <td>2</td>
+            <td>.............................................</td>
             <td>""</td>
           </tr>
           <tr>
-            <td>3.) ................................................................................</td>
+            <td>3</td>
+            <td>Wurstalat</td>
+            <td>42</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>.............................................</td>
             <td>""</td>
           </tr>
           <tr>
-            <td>4.) ................................................................................</td>
+            <td>5</td>
+            <td>.............................................</td>
             <td>""</td>
           </tr>
           <tr>
-            <td>5.) ................................................................................</td>
+            <td>6</td>
+            <td>.............................................</td>
             <td>""</td>
           </tr>
           <tr>
-            <td>6.) ................................................................................</td>
+            <td>7</td>
+            <td>.............................................</td>
             <td>""</td>
           </tr>
           <tr>
-            <td>7.) ................................................................................</td>
-            <td>""""</td>
-          </tr>
-          <tr>
-            <td>8.) ................................................................................</td>
-            <td>""""</td>
+            <td>8</td>
+            <td>.............................................</td>
+            <td>""</td>
           </tr>
         </table>
+
+        <p style="margin-top: 40px;">
+        Lorem, ipsum, dolor, <br /> sit, amet
+        </p>
       <center>
+
+      <div class="footer-container">
+        <div class="footer-line">
+        </div>
+
+        <table cellspacing="0" style="width: 100%;" class="footer">
+          <tr>
+            <td style="width: 250px;">252 XX</td>
+            <td style="text-align: center;">Runde 1</td>
+            <td style="text-align: right; width: 250px;">X 923</td>
+          </tr>
+        </table>
+      </div>
 
     </div>
   </body>
