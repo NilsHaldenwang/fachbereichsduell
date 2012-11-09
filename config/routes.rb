@@ -6,6 +6,7 @@ Fachbereichsduell::Application.routes.draw do
   get "presentation/starting"
   get "presentation/points_and_xes"
   get "presentation/round"
+  get "presentation/game_over"
   get "presentation/showing_question"
   get "presentation/showing_answers"
   get "presentation/answer_state/:id" => "presentation#answer_state"

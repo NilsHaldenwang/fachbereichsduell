@@ -70,8 +70,38 @@ var observe_view_state = function(){
 
 var observe_points_and_xes = function(){
   $.getJSON('points_and_xes', function(data){
-    $("#team_1_points_and_xes").text(data.team_1_points_and_xes);
-    $("#team_2_points_and_xes").text(data.team_2_points_and_xes);
+
+    play_sound = false;
+
+    first_x_idx_t_1 = $("#team_1_points_and_xes").text().search('X');
+
+    if(first_x_idx_t_1 > 0){
+
+      team_1_x_length = $("#team_1_points_and_xes").text().substr(first_x_idx_t_1).length;
+
+      if(team_1_x_length < data.team_1_x.length){
+        play_sound = true;
+      }
+    }
+
+    first_x_idx_t_2 = $("#team_2_points_and_xes").text().search(' ');
+
+    if(first_x_idx_t_2 > 0){
+
+      team_2_x_length = $("#team_2_points_and_xes").text().substr(0, first_x_idx_t_2).length;
+
+      if(team_2_x_length < data.team_2_x.length){
+        play_sound = true;
+      }
+    }
+
+    if(play_sound){
+      $("#zonk_audio").get(0).volume = 1;
+      $("#zonk_audio").get(0).play();
+    }
+
+    $("#team_1_points_and_xes").text("" + data.team_1_points + " " + data.team_1_x);
+    $("#team_2_points_and_xes").text("" + data.team_2_x + " " + data.team_2_points);
   });
 };
 
@@ -100,4 +130,7 @@ $(function(){
 
   $("#points_audio").get(0).volume = 0;
   $("#points_audio").get(0).play();
+
+  $("#zonk_audio").get(0).volume = 0;
+  $("#zonk_audio").get(0).play();
 });

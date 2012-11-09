@@ -70,8 +70,10 @@ class PresentationController < ApplicationController
   def points_and_xes
     @gs = GameState.instance
     render json: {
-      team_1_points_and_xes: "#{@gs.team_1_points} #{'X'*@gs.team_1_x}",
-      team_2_points_and_xes: "#{'X'*@gs.team_2_x} #{@gs.team_2_points}"
+      team_1_points: @gs.team_1_points,
+      team_1_x: 'X'*@gs.team_1_x,
+      team_2_points: @gs.team_2_points,
+      team_2_x: 'X'*@gs.team_2_x,
     }
   end
 
@@ -82,6 +84,22 @@ class PresentationController < ApplicationController
     else
       render json: { round: "Runde #{round}" }
     end
+  end
+
+  def game_over
+    team_1_points = GameState.instance.team_1_points
+    team_2_points = GameState.instance.team_2_points
+
+    winner = nil
+    if team_1_points > team_2_points
+      winner = "Team 1"
+    elsif team_2_points > team_1_points
+      winner = "Team 2"
+    else
+      winner = "Unentschieden"
+    end
+
+    render partial: 'game_over', layout: false, locals: { winner: winner }
   end
 
   def showing_question
