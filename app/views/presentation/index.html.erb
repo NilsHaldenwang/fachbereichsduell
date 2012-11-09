@@ -11,11 +11,14 @@
     <![endif]-->
 
     <%# stylesheet_link_tag "application", :media => "all" %>
+    <%# stylesheet_link_tag "normalize" %>
 
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the top of the document so jquery works in templates... -->
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "presentation" %>
+
 
     <style type="text/css">
       body {
@@ -42,9 +45,10 @@
       }
 
       .container {
-        width: 1022px;
-        height: 766px;
+        width: 1021px;
+        height: 744px;
         margin: 0px;
+        padding: 0px;
       }
 
       .footer {
@@ -62,64 +66,16 @@
       .footer-container {
         position: absolute;
         left: 0;
-        top: 693px;
-        width: 1022px;
+        top: 673px;
+        width: 1021px;
       }
 
     </style>
   </head>
   <body>
     <div class="container">
-      <p style="text-align: center; font-size: 30px;">Wer kommt gerne mal zu spät zur Übung, oft, wieder und wieder?</p>
-
-      <center>
-        <table cellspacing="10px">
-          <tr>
-            <td>1</td>
-            <td>.............................................</td>
-            <td>""</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>.............................................</td>
-            <td>""</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Wurstalat</td>
-            <td>42</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>.............................................</td>
-            <td>""</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>.............................................</td>
-            <td>""</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>.............................................</td>
-            <td>""</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>.............................................</td>
-            <td>""</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>.............................................</td>
-            <td>""</td>
-          </tr>
-        </table>
-
-        <p style="margin-top: 40px;">
-        Lorem, ipsum, dolor, <br /> sit, amet
-        </p>
-      <center>
+      <div id="ajax-container">
+      </div>
 
       <div class="footer-container">
         <div class="footer-line">
@@ -127,9 +83,9 @@
 
         <table cellspacing="0" style="width: 100%;" class="footer">
           <tr>
-            <td style="width: 250px;">252 XX</td>
-            <td style="text-align: center;">Runde 1</td>
-            <td style="text-align: right; width: 250px;">X 923</td>
+            <td style="width: 250px;"><span id="team_1_points_and_xes"></span></td>
+            <td style="text-align: center;"><span id="round-nr"></span></td>
+            <td style="text-align: right; width: 250px;"><span id="team_2_points_and_xes">&nbsp;</span></td>
           </tr>
         </table>
       </div>

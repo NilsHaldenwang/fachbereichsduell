@@ -1,0 +1,26 @@
+<center><h2 style="margin-top: 0px; padding-top: 15px;"><%= question.text %></h2></center>
+
+<center>
+  <table cellspacing="10px">
+    <% answers.each_with_index do |answer, idx| %>
+      <tr>
+        <td><%= idx + 1 %></td>
+        <% if answer.visible? %>
+          <td><%= answer.content %></td>
+          <td><%= answer.normalized_points %></td>
+        <% else %>
+          <script type='script/javascript'>
+            var answer_timer_<%= answer.id %> = setInterval(function(){
+              observe_answer_state(<%= answer.id %>);
+            }, 1000);
+          </script>
+          <td><span id="answer-<%= answer.id %>">.............................................</span></td>
+          <td><span id="points-answer-<%= answer.id %>">""</span></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<center>
+
+
+

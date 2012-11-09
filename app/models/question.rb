@@ -27,6 +27,6 @@ class Question < ActiveRecord::Base
   end
 
   def average_estimation
-    estimation_answers.average(:value)
+    estimation_answers.average(:value) || 0
   end
 end
