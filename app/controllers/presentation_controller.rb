@@ -27,6 +27,13 @@ class PresentationController < ApplicationController
     end
   end
 
+  def guessing_with_choices
+    @current_question = GameState.instance.current_question
+    @answers = @current_question.text_answers.where("count > 0").order("count DESC")
+    @choices = @answers.map(&:content).shuffle.join(", ")
+    render partial: 'guessing', layout: false, locals: { question: @current_question, answers: @answers, choices: @choices }
+  end
+
   def showing_answers
     @current_question = GameState.instance.current_question
 
@@ -68,8 +75,8 @@ class PresentationController < ApplicationController
   end
 
   def round
-    round = ( GameState.instance.current_question.number - 1 ) / 2
-    if round == 0
+    round = ( GameState.instance.current_question.number - 1 ) / 2 + 1
+    if GameState.instance.starting?
       render json: { round: "" }
     else
       render json: { round: "Runde #{round}" }

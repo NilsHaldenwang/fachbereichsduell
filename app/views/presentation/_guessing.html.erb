@@ -1,26 +1,31 @@
-<center><h2 style="margin-top: 0px; padding-top: 15px;"><%= question.text %></h2></center>
+<center><h2 style="margin-top: 0px; padding-top: 15px; margin-bottom: 15px;"><%= question.text %></h2></center>
 
 <center>
-  <table cellspacing="10px">
+  <table cellspacing="5px">
     <% answers.each_with_index do |answer, idx| %>
       <tr>
         <td><%= idx + 1 %></td>
         <% if answer.visible? %>
-          <td><%= answer.content %></td>
-          <td><%= answer.normalized_points %></td>
+          <td style="width: 750px;"><%= answer.content %></td>
+          <td style="width: 60px;"><%= answer.normalized_points %></td>
         <% else %>
           <script type='script/javascript'>
             var answer_timer_<%= answer.id %> = setInterval(function(){
               observe_answer_state(<%= answer.id %>);
             }, 1000);
           </script>
-          <td><span id="answer-<%= answer.id %>">.............................................</span></td>
-          <td><span id="points-answer-<%= answer.id %>">""</span></td>
+          <td style="width: 750px;"><span id="answer-<%= answer.id %>"><%= "..." * 16 %></span></td>
+          <td style="width: 60px;"><span id="points-answer-<%= answer.id %>">""</span></td>
         <% end %>
       </tr>
     <% end %>
   </table>
+
+  <% if GameState.instance.guessing_with_choices? %>
+    <center>
+      <div style="padding-left: 50px; padding-right: 50px; padding-top: 20px; font-size: 25px;">
+        <%= choices %>
+      </div>
+    </center>
+  <% end %>
 <center>
-
-
-

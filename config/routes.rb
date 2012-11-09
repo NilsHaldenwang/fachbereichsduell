@@ -2,6 +2,7 @@ Fachbereichsduell::Application.routes.draw do
   get "presentation/index"
   get "presentation/view_state"
   get "presentation/guessing"
+  get "presentation/guessing_with_choices"
   get "presentation/starting"
   get "presentation/points_and_xes"
   get "presentation/round"

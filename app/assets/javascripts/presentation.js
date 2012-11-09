@@ -16,11 +16,14 @@ var replace_next_dots_with_string = function(text, replace_string) {
 
 var animate_answer_replacement = function(answer_id, answer_text, answer_points){
 
-  wait_interval = 80;
+  wait_interval = 50;
   wait_time = 0;
 
   new_text = answer_text;
-  number_of_point_groups_left = 15 - new_text.length;
+  number_of_point_groups_left = 16 - new_text.length;
+
+  $("#answer_audio").get(0).volume = 1;
+  $("#answer_audio").get(0).play();
 
   $.map(new_text.split(''), function(str){
     wait_time = wait_time + wait_interval;
@@ -38,9 +41,12 @@ var animate_answer_replacement = function(answer_id, answer_text, answer_points)
     }, wait_time);
   }
 
-  wait_time = wait_time + wait_interval;
+  wait_time = wait_time +  500;
 
   setTimeout(function(){
+    $("#points_audio").get(0).volume = 1;
+    $("#points_audio").get(0).play();
+
     $("#points-answer-" + answer_id).text(answer_points);
   }, wait_time);
 
@@ -75,12 +81,6 @@ var observe_round = function(){
   });
 };
 
-$(function(){
-  setInterval(observe_view_state, 1000);
-  setInterval(observe_points_and_xes, 1000);
-  setInterval(observe_round, 1000);
-});
-
 var observe_answer_state = function(answer_id) {
   $.getJSON('answer_state/' + answer_id, function(data){
     if(data.visible){
@@ -89,3 +89,15 @@ var observe_answer_state = function(answer_id) {
     }
   });
 };
+
+$(function(){
+  setInterval(observe_view_state, 1000);
+  setInterval(observe_points_and_xes, 1000);
+  setInterval(observe_round, 1000);
+
+  $("#answer_audio").get(0).volume = 0;
+  $("#answer_audio").get(0).play();
+
+  $("#points_audio").get(0).volume = 0;
+  $("#points_audio").get(0).play();
+});
