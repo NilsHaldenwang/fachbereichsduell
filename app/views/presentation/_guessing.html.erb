@@ -10,6 +10,7 @@
           <td style="width: 60px;"><%= answer.normalized_points %></td>
         <% else %>
           <script type='script/javascript'>
+            var answer_busy_<%= answer.id %> = false;
             var answer_timer_<%= answer.id %> = setInterval(function(){
               observe_answer_state(<%= answer.id %>);
             }, 1000);

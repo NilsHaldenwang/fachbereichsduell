@@ -96,7 +96,7 @@ class PresentationController < ApplicationController
     elsif team_2_points > team_1_points
       winner = "Team 2"
     else
-      winner = "Unentschieden"
+      winner = "Jeder"
     end
 
     render partial: 'game_over', layout: false, locals: { winner: winner }

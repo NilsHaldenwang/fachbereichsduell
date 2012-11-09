@@ -12,3 +12,9 @@
   </table>
 </center>
 
+<% if answers.any? { |a| a.hidden? } %>
+  <script type="text/javascript">
+      $("#points_audio").get(0).volume = 1;
+      $("#points_audio").get(0).play();
+  </script>
+<% end %>

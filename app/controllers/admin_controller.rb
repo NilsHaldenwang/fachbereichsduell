@@ -9,6 +9,17 @@ class AdminController < ApplicationController
 
   def change_state
     GameState.instance.update_attribute(:state, params[:state])
+
+    if GameState.instance.game_over?
+      gs = GameState.instance
+
+      # reset xes
+      gs.team_1_x = 0
+      gs.team_2_x = 0
+
+      gs.save
+    end
+
     redirect_to action: :index
   end
 
