@@ -1,0 +1,14 @@
+<center><h2 style="margin-top: 0px; padding-top: 15px; margin-bottom: 15px;"><%= question.text %></h2></center>
+
+<center>
+  <table cellspacing="5px" style="margin-top: <%= (8 - answers.count) * 55 / 2 %>px;">
+    <% answers.each_with_index do |answer, idx| %>
+      <tr>
+        <td><%= idx + 1 %></td>
+        <td style="width: 750px;"><%= answer.content %></td>
+        <td style="width: 60px;"><%= answer.normalized_points %></td>
+      </tr>
+    <% end %>
+  </table>
+</center>
+

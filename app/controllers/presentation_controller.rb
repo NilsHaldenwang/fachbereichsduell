@@ -40,7 +40,8 @@ class PresentationController < ApplicationController
     if @current_question.estimation?
       render partial: 'showing_estimation_answer', layout: false, locals: { question: @current_question }
     elsif @current_question.choices?
-      # TODO: choices
+      @answers = @current_question.text_answers.where("count > 0").order("count DESC")
+      render partial: 'showing_answers', layout: false, locals: { question: @current_question, answers: @answers }
     end
   end
 

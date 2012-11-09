@@ -1,7 +1,7 @@
 <center><h2 style="margin-top: 0px; padding-top: 15px; margin-bottom: 15px;"><%= question.text %></h2></center>
 
 <center>
-  <table cellspacing="5px">
+  <table cellspacing="5px" style="margin-top: <%= (8 - answers.count) * 55 / 2 %>px;">
     <% answers.each_with_index do |answer, idx| %>
       <tr>
         <td><%= idx + 1 %></td>
@@ -14,7 +14,7 @@
               observe_answer_state(<%= answer.id %>);
             }, 1000);
           </script>
-          <td style="width: 750px;"><span id="answer-<%= answer.id %>"><%= "..." * 16 %></span></td>
+          <td style="width: 750px;"><span id="answer-<%= answer.id %>"><%= "..." * 20 %></span></td>
           <td style="width: 60px;"><span id="points-answer-<%= answer.id %>">""</span></td>
         <% end %>
       </tr>
@@ -22,10 +22,10 @@
   </table>
 
   <% if GameState.instance.guessing_with_choices? %>
-    <center>
-      <div style="padding-left: 50px; padding-right: 50px; padding-top: 20px; font-size: 25px;">
+    <div style="padding-left: 50px; padding-right: 50px; padding-top: 20px; font-size: 25px; width: 921px; position: absolute; left: 0px; top: 560px;">
+      <center>
         <%= choices %>
-      </div>
-    </center>
+      </center>
+    </div>
   <% end %>
-<center>
+</center>

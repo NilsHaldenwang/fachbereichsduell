@@ -16,11 +16,11 @@ var replace_next_dots_with_string = function(text, replace_string) {
 
 var animate_answer_replacement = function(answer_id, answer_text, answer_points){
 
-  wait_interval = 50;
+  wait_interval = 40;
   wait_time = 0;
 
   new_text = answer_text;
-  number_of_point_groups_left = 16 - new_text.length;
+  number_of_point_groups_left = 20 - new_text.length;
 
   $("#answer_audio").get(0).volume = 1;
   $("#answer_audio").get(0).play();
