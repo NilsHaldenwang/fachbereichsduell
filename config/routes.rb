@@ -19,6 +19,8 @@ Fachbereichsduell::Application.routes.draw do
   post "admin/next_question"
   post "admin/remove_estimation_answer"
 
+  root to: "questions#show"
+
   get "questions/show"
 
   get "questions/reload_check"
