@@ -16,6 +16,14 @@ var replace_next_dots_with_string = function(text, replace_string) {
 
 var animate_answer_replacement = function(answer_id, answer_text, answer_points){
 
+  if(eval("answer_busy_" + answer_id + " === true")) {
+    //early return trolololol
+    return;
+  }
+
+  //make answer busy and never unbusy again
+  eval("answer_busy_" + answer_id + " = true;");
+
   wait_interval = 40;
   wait_time = 0;
 
@@ -116,8 +124,6 @@ var observe_round = function(){
 };
 
 var observe_answer_state = function(answer_id) {
-  if(! eval("answer_busy_" + answer_id)) {
-    eval("answer_busy_" + answer_id + " = true;");
 
     $.ajax({
       url: 'answer_state/' + answer_id,
@@ -128,10 +134,7 @@ var observe_answer_state = function(answer_id) {
           eval("clearInterval(answer_timer_" + answer_id + ");");
         }
       }
-    }).always(function(){
-      eval("answer_busy_" + answer_id + " = false;");
     });
-  }
 
 };
 
