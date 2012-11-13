@@ -20,6 +20,8 @@ test:
 
 production:
   adapter: sqlite3
+  user: fbduell
+  password: 2fd2rg
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
