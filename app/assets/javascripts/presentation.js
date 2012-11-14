@@ -56,6 +56,10 @@ var animate_answer_replacement = function(answer_id, answer_text, answer_points)
     $("#points_audio").get(0).play();
 
     $("#points-answer-" + answer_id).text(answer_points);
+
+    //query points after answer has been revealed
+    observe_points_and_xes();
+
   }, wait_time);
 
 };
@@ -71,6 +75,11 @@ var observe_view_state = function(){
         url: current_state
       }).done(function(html){
         $("#ajax-container").html(html);
+
+        //change round if needed and update points
+        observe_points_and_xes();
+        observe_round();
+
       });
     }
   });
@@ -140,8 +149,9 @@ var observe_answer_state = function(answer_id) {
 
 $(function(){
   setInterval(observe_view_state, 1000);
-  setInterval(observe_points_and_xes, 1000);
-  setInterval(observe_round, 1000);
+  //don't query all the time
+  //setInterval(observe_points_and_xes, 1000);
+  //setInterval(observe_round, 1000);
 
   $("#answer_audio").get(0).volume = 0;
   $("#answer_audio").get(0).play();
