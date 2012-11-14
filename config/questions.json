@@ -6,7 +6,7 @@
   "question_type": "estimation"
 },
 {
-  "text": "Bei wem haben Sie Ihre erste Mathematik-Vorlesung gehört?",
+  "text": "Bei wem haben Sie Ihre erste Mathe-Vorlesung gehört?",
   "question_type": "choices",
   "answers": [
   { "content": "Bruns" },
@@ -46,7 +46,7 @@
   "question_type": "estimation"
 },
 {
-  "text": "Welchen mathematischen Beweis finden Sie am schönsten?",
+  "text": "Welchen Beweis finden Sie am schönsten?",
   "question_type": "choices",
   "answers": [
   { "content": "Abzählbarkeit der rationalen Zahlen" },
@@ -65,7 +65,7 @@
   "question_type": "estimation"
 },
 {
-  "text": "Unter welchem Betriebssystem haben Sie Ihre ersten Computererfahrungen gemacht?",
+  "text": "Was war Ihr erstes Computer-Betriebssystem?",
   "question_type": "choices",
   "answers": [
   { "content": "(MS)DOS" },
@@ -106,7 +106,7 @@
   "question_type": "estimation"
 },
 {
-  "text": "In welcher Mathe-Veranstaltung haben Sie am meisten gelitten?",
+  "text": "In welcher Veranstaltung haben Sie am meisten gelitten?",
   "question_type": "choices",
   "answers": [
   { "content": "Mathematikdidaktik" },
