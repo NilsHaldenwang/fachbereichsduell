@@ -126,6 +126,47 @@ var observe_points_and_xes = function(){
   });
 };
 
+var observe_xes = function(){
+  $.getJSON('points_and_xes', function(data){
+
+    play_sound = false;
+
+    first_x_idx_t_1 = $("#team_1_points_and_xes").text().search('X');
+
+    if(first_x_idx_t_1 > 0){
+
+      team_1_x_length = $("#team_1_points_and_xes").text().substr(first_x_idx_t_1).length;
+
+      if(team_1_x_length < data.team_1_x.length){
+        play_sound = true;
+      }
+    } else if(first_x_idx_t_1 === -1 && data.team_1_x.length > 0) {
+      play_sound = true;
+    }
+
+    first_x_idx_t_2 = $("#team_2_points_and_xes").text().search(' ');
+
+    if(first_x_idx_t_2 > 0){
+
+      team_2_x_length = $("#team_2_points_and_xes").text().substr(0, first_x_idx_t_2).length;
+
+      if(team_2_x_length < data.team_2_x.length){
+        play_sound = true;
+      }
+    } else if(first_x_idx_t_2 === 0 && data.team_2_x.length > 0){
+      play_sound = true;
+    }
+
+    if(play_sound){
+      $("#zonk_audio").get(0).volume = 1;
+      $("#zonk_audio").get(0).play();
+
+      $("#team_1_points_and_xes").text("" + data.team_1_points + " " + data.team_1_x);
+      $("#team_2_points_and_xes").text("" + data.team_2_x + " " + data.team_2_points);
+    }
+  });
+};
+
 var observe_round = function(){
   $.getJSON('round', function(data){
     $("#round-nr").text(data.round);
@@ -152,6 +193,7 @@ $(function(){
   //don't query all the time
   //setInterval(observe_points_and_xes, 1000);
   //setInterval(observe_round, 1000);
+  setInterval(observe_xes, 1000);
 
   $("#answer_audio").get(0).volume = 0;
   $("#answer_audio").get(0).play();
