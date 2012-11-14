@@ -1,0 +1,5 @@
+* Schätzfrage Quellcode austauschen
+* Textfrage Beweis austauschen
+* Ist bei der Schätzfrage unentschieden darf das derzeit unterlegene Team anfangen
+* Team 1 -> Mathe
+* Team 2 -> Informatik
