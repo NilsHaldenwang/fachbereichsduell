@@ -9,8 +9,14 @@
   "text": "Bei wem haben Sie Ihre erste Mathematik-Vorlesung gehört?",
   "question_type": "choices",
   "answers": [
-  { "content": "Nico" },
-  { "content": "Nils" }
+  { "content": "Bruns" },
+  { "content": "Meyer-Nieberg" },
+  { "content": "Reiffen" },
+  { "content": "Römer" },
+  { "content": "Spindler" },
+  { "content": "Trapp" },
+  { "content": "Vogt" },
+  { "content": "Zielke" }
   ]
 },
 
@@ -22,9 +28,15 @@
 {
   "text": "Wohin im europäischen Ausland fahren Sie gerne in den Urlaub?",
   "question_type": "choices",
-  "answers": [
-  { "content": "Nico" },
-  { "content": "Nils" }
+   "answers": [
+  { "content": "Spanien" },
+  { "content": "Italien" },
+  { "content": "Frankreich" },
+  { "content": "Österreich" },
+  { "content": "Skandinavien" },
+  { "content": "Britische Inseln" },
+  { "content": "Benelux" },
+  { "content": "Griechenland" }
   ]
 },
 
@@ -37,8 +49,13 @@
   "text": "Welchen mathematischen Beweis finden Sie am schönsten?",
   "question_type": "choices",
   "answers": [
-  { "content": "Nico" },
-  { "content": "Nils" }
+  { "content": "Abzählbarkeit der rationalen Zahlen" },
+  { "content": "Binomischer Lehrsatz" },
+  { "content": "Fünffarbensatz" },
+  { "content": "Gesetz der großen Zahlen" },
+  { "content": "Irrationalität von Wurzel 2" },
+  { "content": "Satz von Fermat" },
+  { "content": "Unendlich viele Primzahlen" }
   ]
 },
 
@@ -51,8 +68,14 @@
   "text": "Unter welchem Betriebssystem haben Sie Ihre ersten Computererfahrungen gemacht?",
   "question_type": "choices",
   "answers": [
-  { "content": "Nico" },
-  { "content": "Nils" }
+  { "content": "(MS)DOS" },
+  { "content": "Windows" },
+  { "content": "Mac OS" },
+  { "content": "Unix/Linux" },
+  { "content": "AmigaOS" },
+  { "content": "TOS" },
+  { "content": "Commodore Basic V2 (C64)" },
+  { "content": "OS/2" }
   ]
 },
 
@@ -66,8 +89,13 @@
   "text": "Was war Ihr Lieblingsessen in der Mensa?",
   "question_type": "choices",
   "answers": [
-  { "content": "Nico" },
-  { "content": "Nils" }
+  { "content": "Currywurst(eintopf)" },
+  { "content": "Gulaschsuppe" },
+  { "content": "Milchreis" },
+  { "content": "Pizza" },
+  { "content": "Pommes" },
+  { "content": "Schnitzel" },
+  { "content": "Spaghetti Bolognese" }
   ]
 },
 
@@ -81,10 +109,16 @@
   "text": "In welcher Mathe-Veranstaltung haben Sie am meisten gelitten?",
   "question_type": "choices",
   "answers": [
-  { "content": "Nico" },
-  { "content": "Nils" }
+  { "content": "Mathematikdidaktik" },
+  { "content": "Analysis" },
+  { "content": "Numerik" },
+  { "content": "Stochastik" },
+  { "content": "Differentialgleichungen" },
+  { "content": "Rechnergestütze Modellbildung" },
+  { "content": "Algebra" },
+  { "content": "Topologie" }
   ]
-},
+}
 
 
 ]
