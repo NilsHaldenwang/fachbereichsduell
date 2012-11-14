@@ -3,7 +3,9 @@ class QuestionsController < ApplicationController
   def show
     @game_state = GameState.instance
 
-    if @game_state.showing_question?
+    if @game_state.starting?
+      render 'starting'
+    elsif @game_state.showing_question?
       @question = @game_state.current_question
 
       unless @question.was_answered_by?(request.remote_ip)

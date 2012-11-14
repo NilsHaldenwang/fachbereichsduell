@@ -1,0 +1,15 @@
+<table style="height: 100%; width: 100%">
+	<tr>
+		<td valign="center">
+			<%= image_tag "logo-mobil.png", :style => 'width: 100%;' %>
+		</td>
+	</tr>
+</table>
+
+
+<%= form_tag '/questions/show', method: :get do %>
+	<%= bootstrap_submit_button "Fragen beantworten" %>
+<% end %>
+
+<!-- Reload Checking (see questions.js) -->
+<script type="text/javascript">enable_reload_check();</script>
