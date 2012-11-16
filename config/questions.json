@@ -26,17 +26,17 @@
   "question_type": "estimation"
 },
 {
-  "text": "Wohin im europäischen Ausland fahren Sie gerne in den Urlaub?",
+  "text": "Welches Nebenfach haben Sie studiert?",
   "question_type": "choices",
    "answers": [
-  { "content": "Spanien" },
-  { "content": "Italien" },
-  { "content": "Frankreich" },
-  { "content": "Österreich" },
-  { "content": "Skandinavien" },
-  { "content": "Britische Inseln" },
-  { "content": "Benelux" },
-  { "content": "Griechenland" }
+  { "content": "Mathematik" },
+  { "content": "Informatik" },
+  { "content": "Physik" },
+  { "content": "Systemwissenschaften" },
+  { "content": "Chemie" },
+  { "content": "Philosophie" },
+  { "content": "BWL/VWL" },
+  { "content": "Biologie" }
   ]
 },
 
@@ -46,22 +46,22 @@
   "question_type": "estimation"
 },
 {
-  "text": "Welchen Beweis finden Sie am schönsten?",
+  "text": "Mit welchem Verkehrsmittel sind Sie überwiegend zur Uni gekommen?",
   "question_type": "choices",
   "answers": [
-  { "content": "Abzählbarkeit der rationalen Zahlen" },
-  { "content": "Binomischer Lehrsatz" },
-  { "content": "Fünffarbensatz" },
-  { "content": "Gesetz der großen Zahlen" },
-  { "content": "Irrationalität von Wurzel 2" },
-  { "content": "Satz von Fermat" },
-  { "content": "Unendlich viele Primzahlen" }
+  { "content": "Auto" },
+  { "content": "Bahn" },
+  { "content": "Bus" },
+  { "content": "Fahrrad" },
+  { "content": "Flugzeug" },
+  { "content": "Inline-Skates" },
+  { "content": "Zu Fuß" }
   ]
 },
 
 
 {
-  "text": "Wie viele Zeilen Quellcode haben Sie während Ihres Studiums programmieren müssen?",
+  "text": "Wie viele Wörter enthält die Prüfungsordnung Bachelor Informatik?",
   "question_type": "estimation"
 },
 {
@@ -106,7 +106,7 @@
   "question_type": "estimation"
 },
 {
-  "text": "In welcher Veranstaltung haben Sie am meisten gelitten?",
+  "text": "In welcher Mathe-Veranstaltung haben Sie am meisten gelitten?",
   "question_type": "choices",
   "answers": [
   { "content": "Mathematikdidaktik" },
@@ -114,7 +114,6 @@
   { "content": "Numerik" },
   { "content": "Stochastik" },
   { "content": "Differentialgleichungen" },
-  { "content": "Rechnergestütze Modellbildung" },
   { "content": "Algebra" },
   { "content": "Topologie" }
   ]
