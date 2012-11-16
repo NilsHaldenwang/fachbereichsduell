@@ -79,7 +79,7 @@ class PresentationController < ApplicationController
 
   def round
     round = ( GameState.instance.current_question.number - 1 ) / 2 + 1
-    if GameState.instance.starting?
+    if GameState.instance.starting? || GameState.instance.game_over?
       render json: { round: "" }
     else
       render json: { round: "Runde #{round}" }
