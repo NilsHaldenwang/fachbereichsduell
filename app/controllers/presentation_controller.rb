@@ -92,9 +92,9 @@ class PresentationController < ApplicationController
 
     winner = nil
     if team_1_points > team_2_points
-      winner = "Team 1"
+      winner = "Mathematik"
     elsif team_2_points > team_1_points
-      winner = "Team 2"
+      winner = "Informatik"
     else
       winner = "Jeder"
     end

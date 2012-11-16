@@ -52,7 +52,7 @@
       }
 
       .footer {
-        margin-top: 10px;
+        margin-bottom: 10px;
         background-image: url('<%= asset_path "bg-mesh-green.png" %>');
         color: black;
         font-size: 45px;
@@ -66,21 +66,25 @@
       .footer-container {
         position: absolute;
         left: 0;
-        top: 673px;
+        top: 0px; /* 673 */
         width: 1021px;
       }
+			
+			#ajax-container {
+				position: absolute;
+				left: 0;
+				top: 86px;
+				width: 1021px;
+			}
+
 
     </style>
   </head>
   <body>
     <div class="container">
-      <div id="ajax-container">
-      </div>
-
-      <div class="footer-container">
-        <div class="footer-line">
-        </div>
-
+      
+			<div class="footer-container">
+        
         <table cellspacing="0" style="width: 100%;" class="footer">
           <tr>
             <td style="width: 250px;"><span id="team_1_points_and_xes"></span></td>
@@ -88,6 +92,13 @@
             <td style="text-align: right; width: 250px;"><span id="team_2_points_and_xes">&nbsp;</span></td>
           </tr>
         </table>
+
+				<div class="footer-line">
+        </div>
+
+      </div>
+
+			<div id="ajax-container">
       </div>
 
     </div>
