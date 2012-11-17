@@ -11,7 +11,7 @@
 
 <% elsif @game_state.showing_question? %>
 
-  <%= bootstrap_admin_button_form("Raten beginnen, antworten schließen", "/admin/change_state", state: GameState::STATE_GUESSING) %>
+  <%= bootstrap_admin_button_form("Antworten schließen", "/admin/change_state", state: GameState::STATE_GUESSING) %>
 
 <% elsif @game_state.guessing? %>
 

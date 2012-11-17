@@ -1,7 +1,7 @@
 var perform_reload_check_and_reload_if_necessary = function() {
 	$.getJSON('/questions/reload_check', function (data) {
 		if(data.reload) {
-			window.location = 'show';
+			window.location = '/questions/show';
 		}
 	});
 };
