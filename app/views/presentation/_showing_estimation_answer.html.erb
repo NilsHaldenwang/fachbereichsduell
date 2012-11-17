@@ -2,7 +2,7 @@
   <tr>
     <td valign="center">
       <center><h1><%= question.text %></h1></center>
-      <center><h1><%= question.average_estimation.round(3) %></h1></center>
+      <center><h1><%= question.average_estimation.round(3).to_s.gsub(".",",") %></h1></center>
     </td>
   </tr>
 </table>
