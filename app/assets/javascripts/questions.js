@@ -1,5 +1,5 @@
 var perform_reload_check_and_reload_if_necessary = function() {
-	$.getJSON('reload_check', function (data) {
+	$.getJSON('/questions/reload_check', function (data) {
 		if(data.reload) {
 			window.location = 'show';
 		}
@@ -7,5 +7,5 @@ var perform_reload_check_and_reload_if_necessary = function() {
 };
 
 var enable_reload_check = function() {
-	$(function() { setInterval(perform_reload_check_and_reload_if_necessary, 3 * 1000) });
-}
+	$(function() { setInterval(perform_reload_check_and_reload_if_necessary, 3 * 1000); });
+};
