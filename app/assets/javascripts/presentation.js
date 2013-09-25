@@ -11,8 +11,8 @@ var observe_view_state = function(){
         $("#ajax-container").html(html);
 
         //change round if needed and update points
-        // observe_points();
-        // observe_round();
+        observe_points();
+        observe_round();
 
       });
     }
@@ -21,7 +21,8 @@ var observe_view_state = function(){
 
 var observe_points = function(){
   $.getJSON('points', function(data){
-    console.log("YOLO");
+    $("#team_1_points").text(data.team_1_points);
+    $("#team_2_points").text(data.team_2_points);
   });
 };
 

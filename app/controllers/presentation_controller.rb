@@ -18,9 +18,20 @@ class PresentationController < ApplicationController
 
   def guessing
     @current_question = GameState.instance.current_question
-    @min = 15
-    @max = 95
-    render partial: 'guessing', layout: false, locals: { question: @current_question, min: @min, max: @max }
+
+    @answers = @current_question.estimation_answers.map(&:value).shuffle
+
+    @min = @current_question.rounding_factor * ( @answers.min.to_i / @current_question.rounding_factor )
+    @max = @current_question.rounding_factor * (@answers.max.to_i / @current_question.rounding_factor) + @current_question.rounding_factor
+
+    # TODO: REMOVE FAKE ANTWORTEN
+    100.times do |i|
+      @answers << ((@max - @min) * rand + @min).round(2)
+    end
+
+    @mean = ( @answers.inject(:+) / @answers.size.to_f ).round(2)
+
+    render partial: 'guessing', layout: false, locals: { question: @current_question, min: @min, max: @max, answers: @answers, mean: @mean }
   end
 
   def guessing_with_choices
@@ -73,22 +84,20 @@ class PresentationController < ApplicationController
     render partial: 'starting', layout: false
   end
 
-  def points_and_xes
+  def points
     @gs = GameState.instance
     render json: {
       team_1_points: @gs.team_1_points,
-      team_1_x: 'X'*@gs.team_1_x,
       team_2_points: @gs.team_2_points,
-      team_2_x: 'X'*@gs.team_2_x,
     }
   end
 
   def round
-    round = ( GameState.instance.current_question.number - 1 ) / 2 + 1
+    round = GameState.instance.current_question.number
     if GameState.instance.starting? || GameState.instance.game_over?
       render json: { round: "" }
     else
-      render json: { round: "Runde #{round}" }
+      render json: { round: "Frage #{round}" }
     end
   end
 

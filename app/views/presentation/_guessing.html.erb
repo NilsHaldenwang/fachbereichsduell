@@ -1,16 +1,31 @@
 <%= render partial: "showing_question", locals: { question: question } %>
 
+<table id="answer_table" style="height: 100px; width: 100%; position: absolute; top: 210px; display: none;">
+  <tr>
+    <td valign="center">
+      <center>
+        <p style="font-size: 30px;">Durchschnitt: <%= mean.to_s.gsub(".", ",") %></p>
+        <p style="margin-top: -20px; font-size: 20px;">Prof. Rollinger: <span id='rollinger_diff'></span> | Prof. Lücke: <span id='luecke_diff'></span></p>
+      </center>
+    </td>
+  </tr>
+</table>
+
 <center>
-  <div id="drawing_canvas" style="margin-top: 200px;"></div>
+  <div id="drawing_canvas" style="margin-top: 230px;"></div>
 </center>
 
 <script type="text/javascript">
+
   $("#question_table").animate({
       top: "-210px"
   });
 
+  var answers = [<%= answers.join(", ") %>];
+  var mean = <%= mean %>;
+
   var stageWidth = 950;
-  var stageHeight = 400;
+  var stageHeight = 370;
 
   var min = <%= min %>;
   var max = <%= max %>;
@@ -124,7 +139,7 @@
       var rollingerPointText = new Kinetic.Text({
           x: 80,
           y: 335,
-          text: guess,
+          text: guess.toString().replace(".", ","),
           fontSize: 30,
           fontFamily: "Tahoma",
           fill: "black"
@@ -164,18 +179,105 @@
   layer.add(rightLine);
   stage.add(layer);
 
+  var lueckeDrawn = false;
+  var rollingerDrawn = false;
+  var lueckeDiff = null;
+  var rollingerDiff = null;
+
   var observePresidentAnswers = function(){
     $.getJSON('president_answers', function(data){
-        if(data.answer_luecke != null){
+        if(data.answer_luecke != null && !lueckeDrawn){
           drawHeadWithLabel('luecke', data.answer_luecke);
+          lueckeDiff = data.answer_luecke - mean;
+          lueckeDrawn = true;
         }
-        if(data.answer_rollinger != null){
+        if(data.answer_rollinger != null && !rollingerDrawn){
           drawHeadWithLabel('rollinger', data.answer_rollinger);
+          rollingerDiff = data.answer_rollinger - mean;
+          rollingerDrawn = true;
+        }
+
+        if(rollingerDrawn && lueckeDrawn){
+          clearInterval(intervalHandle);
+
+          $("#luecke_diff").text((lueckeDiff > 0 ? "+" : "") + lueckeDiff.toFixed(2).toString().replace(".", ","));
+          $("#rollinger_diff").text((rollingerDiff > 0 ? "+" : "") + rollingerDiff.toFixed(2).toString().replace(".", ","));
+
+          setTimeout(function(){
+            $.each(answers, function(idx, obj){
+                setTimeout(function(){
+                    animateAnswer(obj);
+                }, Math.random() * 5000);
+              });
+           }, 2000);
+          setTimeout(function(){
+              circle = new Kinetic.Circle({
+                x: guessValueToLineLocation(mean),
+                y: 250,
+                radius: 0,
+                fill: "green",
+                opacity: 0
+                  });
+
+              layer.add(circle);
+
+              circleTween = new Kinetic.Tween({
+                node: circle,
+                duration: 1,
+                opacity: 1,
+                radius: 15
+                  });
+
+              circleTween.play();
+
+              setTimeout(function(){
+                  $("#answer_table").fadeIn("slow");
+                }, 1000);
+
+            }, 8000);
+
         }
     });
   };
 
+  var intervalHandle = null;
   $(function(){
-    setInterval(observePresidentAnswers, 1000);
+    intervalHandle = setInterval(observePresidentAnswers, 1000);
   });
+
+  var answerLayer = new Kinetic.Layer();
+  stage.add(answerLayer);
+  var randOffset = 5;
+  var startRadius = 15;
+  var targetRadius = 5;
+
+  var animateAnswer = function(value){
+    h = Math.random() * randOffset;
+    randomArc = Math.random() * 3.14;
+    yOffset = Math.sin(randomArc) * h;
+    xOffset = Math.cos(randomArc) * h;
+
+    xPos = guessValueToLineLocation(value) + xOffset;
+    yPos = 247 + yOffset;
+
+    circle = new Kinetic.Circle({
+      x: xPos,
+      y: yPos,
+      radius: startRadius,
+      fill: "red",
+      opacity: 0
+        });
+
+    answerLayer.add(circle);
+
+    var circleTween = new Kinetic.Tween({
+      node: circle,
+      duration: 0.5,
+      opacity: 1,
+      radius: targetRadius
+        });
+
+    circleTween.play();
+  }
+
 </script>

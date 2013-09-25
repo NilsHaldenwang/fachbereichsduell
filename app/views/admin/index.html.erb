@@ -15,9 +15,7 @@
 
 <% elsif @game_state.guessing? %>
 
-  <%= bootstrap_admin_button_form("Auflösung", "/admin/change_state", { state: GameState::STATE_SHOWING_ANSWER }, "btn-danger pull-right") %>
-
-<% elsif @game_state.showing_answer? %>
+  <%# <%= bootstrap_admin_button_form("Nächste Frage", "/admin/change_state", { state: GameState::STATE_SHOWING_QUESTION }, "btn-danger pull-right") %>
 
   <% if Question.find_by_number(GameState.instance.question_number + 1) %>
     <%= bootstrap_admin_button_form("Nächste Frage", "/admin/next_question", { state: GameState::STATE_SHOWING_QUESTION }, "btn-danger pull-right") %>
