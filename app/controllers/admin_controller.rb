@@ -30,6 +30,19 @@ class AdminController < ApplicationController
     if GameState.instance.game_over?
       gs = GameState.instance
 
+      cq = gs.current_question
+      answers = cq.estimation_answers.map(&:value)
+      mean = ( answers.inject(:+) / answers.size.to_f ).round(2)
+
+      diff_luecke = ( cq.answer_luecke.abs - mean ).abs
+      diff_rollinger = ( cq.answer_rollinger - mean ).abs
+
+      if(diff_luecke < diff_rollinger)
+        gs.team_2_points += 1
+      else
+        gs.team_1_points += 1
+      end
+
       # reset xes
       gs.team_1_x = 0
       gs.team_2_x = 0
