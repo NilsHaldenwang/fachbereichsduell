@@ -22,10 +22,10 @@
 
     <style type="text/css">
       body {
-        background-image: url('<%= asset_path "bg-mesh.png" %>');
-        font-family: 'unibody8';
-        font-size: 30px;
-        color: rgb(140, 255, 0);
+        background-color: white;
+        font-family: 'Tahoma';
+        font-size: 25px;
+        color: black;
         margin: 0px;
         padding: 0px;
       }
@@ -35,11 +35,8 @@
       }
 
       @font-face {
-        font-family: 'unibody8';
-        src: url('<%= asset_path "unibody8-regular.eot" %>');
-        src: url('<%= asset_path "unibody8-regular.woff" %>') format('woff'),
-        url('<%= asset_path "unibody8-regular.ttf" %>') format('truetype'),
-        url('<%= asset_path "unibody8-regular.svg#unibody8-regular" %>') format('svg');
+        font-family: 'neue';
+        src: url('<%= asset_path "neue2.ttf" %>') format('truetype');
         font-weight: normal;
         font-style: normal;
       }
@@ -53,29 +50,27 @@
 
       .footer {
         margin-bottom: 10px;
-        background-image: url('<%= asset_path "bg-mesh-green.png" %>');
         color: black;
         font-size: 45px;
-      }
-
-      .footer-line {
-        background-image: url('<%= asset_path "bg-mesh-green.png" %>');
-        height: 5px;
       }
 
       .footer-container {
         position: absolute;
         left: 0;
-        top: 0px; /* 673 */
+        top: 8px; /* 673 */
         width: 1021px;
       }
 			
 			#ajax-container {
 				position: absolute;
-				left: 0;
+				left: 10;
 				top: 86px;
-				width: 1021px;
+				width: 1001px;
 			}
+
+      .pres_name {
+        font-size: 20px;
+      }
 
 
     </style>
@@ -87,14 +82,11 @@
         
         <table cellspacing="0" style="width: 100%;" class="footer">
           <tr>
-            <td style="width: 250px;"><span id="team_1_points_and_xes"></span></td>
+            <td style="width: 250px;"><span id="team_1_points_and_xes">42</span> <span class="pres_name">Rollinger</span></td>
             <td style="text-align: center;"><span id="round-nr"></span></td>
-            <td style="text-align: right; width: 250px;"><span id="team_2_points_and_xes">&nbsp;</span></td>
+            <td style="text-align: right; width: 250px;"><span class="pres_name">Lücke</span> <span id="team_2_points_and_xes">52</span></td>
           </tr>
         </table>
-
-				<div class="footer-line">
-        </div>
 
       </div>
 

@@ -1,32 +1,181 @@
-<center><h2 style="margin-top: 0px; padding-top: 15px; margin-bottom: 15px;"><%= question.text %></h2></center>
+<%= render partial: "showing_question", locals: { question: question } %>
 
 <center>
-  <table cellspacing="5px" style="margin-top: <%= (8 - answers.count) * 55 / 2 %>px;">
-    <% answers.each_with_index do |answer, idx| %>
-      <tr>
-        <td><%= idx + 1 %></td>
-        <% if answer.visible? %>
-          <td style="width: 750px;"><%= answer.content %></td>
-          <td style="width: 60px;"><%= answer.normalized_points %></td>
-        <% else %>
-          <script type='script/javascript'>
-            var answer_busy_<%= answer.id %> = false;
-            var answer_timer_<%= answer.id %> = setInterval(function(){
-              observe_answer_state(<%= answer.id %>);
-            }, 1000);
-          </script>
-          <td style="width: 750px;"><span id="answer-<%= answer.id %>"><%= "..." * 20 %></span></td>
-          <td style="width: 60px;"><span id="points-answer-<%= answer.id %>">""</span></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
-
-  <% if GameState.instance.guessing_with_choices? %>
-    <div style="padding-left: 10px; padding-right: 10px; padding-top: 20px; font-size: 25px; width: 1001px; position: absolute; left: 0px; top: 560px;">
-      <center>
-        <%= choices %>
-      </center>
-    </div>
-  <% end %>
+  <div id="drawing_canvas" style="margin-top: 200px;"></div>
 </center>
+
+<script type="text/javascript">
+  $("#question_table").animate({
+      top: "-210px"
+  });
+
+  var stageWidth = 950;
+  var stageHeight = 400;
+
+  var min = <%= min %>;
+  var max = <%= max %>;
+
+  var stage = new Kinetic.Stage({
+    container: "drawing_canvas",
+    width: stageWidth,
+    height: stageHeight
+  });
+
+  var layer = new Kinetic.Layer();
+
+  var lineConf = {
+    stroke: "black",
+    strokeWidth: 5,
+    lineCap: "round",
+    lineJoin: "round"
+  };
+
+  var minText = new Kinetic.Text({
+    x: 10,
+    y: 200,
+    text: min,
+    fontSize: 20,
+    fontFamily: "Tahoma",
+    fill: "black"
+  });
+  layer.add(minText);
+
+  var maxText = new Kinetic.Text({
+    x: 940,
+    y: 200,
+    text: max,
+    fontSize: 20,
+    fontFamily: "Tahoma",
+    fill: "black"
+  });
+
+  maxText.setOffset({
+      x: maxText.getWidth()
+      });
+
+  layer.add(maxText);
+
+  var baseLine = new Kinetic.Line(
+      $.extend({}, lineConf, {points: [10, 250, 940, 250]})
+      );
+
+  var leftLine = new Kinetic.Line(
+      $.extend({}, lineConf, {points: [10, 235, 10, 265]})
+      );
+
+  var rightLine = new Kinetic.Line(
+      $.extend({}, lineConf, {points: [940, 235, 940, 265]})
+      );
+
+  for(i = 1; i <= 15; i+=1){
+    line = new Kinetic.Line(
+      $.extend({}, lineConf, {points: [10 + 62 * i, 240, 10 + 62 * i, 260], strokeWidth: 2})
+        );
+    layer.add(line);
+  }
+
+  var guessValueToLineLocation = function(guess){
+    return 930 * (1.0 * (guess - min) / (max - min)) + 10;
+  }
+
+  var guessValueToHeadLocation = function(guess) {
+    return Math.max(Math.min(guessValueToLineLocation(guess) - 36, 940 - 280), 10);
+  }
+
+  var drawHeadWithLabel = function(president, guess) {
+    var rollingerLayer = new Kinetic.Layer();
+
+    var xOffset = guessValueToHeadLocation(guess);
+    var guessLocation = guessValueToLineLocation(guess) - xOffset;
+    var yOffset = 0;
+    var lineOffset = 0;
+
+    if(president == 'rollinger'){
+      yOffset = -170;
+      lineOffset = 121;
+    }
+
+    var rollingerGroup = new Kinetic.Group({
+          x: xOffset,
+          y: yOffset,
+        });
+
+    var rollingerImageContainer = new Image();
+    rollingerImageContainer.onload = function(){
+      var rollingerImage = new Kinetic.Image({
+            x: 0,
+            y: 300,
+            image: rollingerImageContainer,
+            width: 73,
+            height: 73
+          });
+      rollingerGroup.add(rollingerImage);
+
+      var rollingerLabelText = new Kinetic.Text({
+          x: 80,
+          y: 305,
+          text: president == 'rollinger' ? "Prof. Rollinger" : "Prof. Lücke",
+          fontSize: 30,
+          fontFamily: "Tahoma",
+          fill: "black"
+          });
+      rollingerGroup.add(rollingerLabelText);
+
+      var rollingerPointText = new Kinetic.Text({
+          x: 80,
+          y: 335,
+          text: guess,
+          fontSize: 30,
+          fontFamily: "Tahoma",
+          fill: "black"
+          });
+      rollingerGroup.add(rollingerPointText);
+
+      var linePoints = [36, 290 + lineOffset, guessLocation, 260 + lineOffset]
+      if(president == 'rollinger'){
+        linePoints = [guessLocation, 290 + lineOffset, 36, 260 + lineOffset]
+      }
+
+      var rollingerLine = new Kinetic.Line(
+          $.extend({}, lineConf, {points: linePoints, strokeWidth: 2})
+          );
+      rollingerGroup.add(rollingerLine);
+
+      rollingerLayer.setOpacity(0.0);
+      rollingerLayer.add(rollingerGroup);
+      stage.add(rollingerLayer);
+      var rollingerTween = new Kinetic.Tween({
+            node: rollingerLayer,
+            duration: 0.5,
+            opacity: 1
+          });
+      rollingerTween.play();
+    };
+
+    if(president == 'rollinger')
+      rollingerImageContainer.src = "<%= asset_path 'rollinger.png' %>"
+    else
+      rollingerImageContainer.src = "<%= asset_path 'luecke.png' %>"
+
+  }
+
+  layer.add(baseLine);
+  layer.add(leftLine);
+  layer.add(rightLine);
+  stage.add(layer);
+
+  var observePresidentAnswers = function(){
+    $.getJSON('president_answers', function(data){
+        if(data.answer_luecke != null){
+          drawHeadWithLabel('luecke', data.answer_luecke);
+        }
+        if(data.answer_rollinger != null){
+          drawHeadWithLabel('rollinger', data.answer_rollinger);
+        }
+    });
+  };
+
+  $(function(){
+    setInterval(observePresidentAnswers, 1000);
+  });
+</script>

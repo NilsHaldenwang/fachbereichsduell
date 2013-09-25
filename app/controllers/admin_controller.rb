@@ -7,6 +7,23 @@ class AdminController < ApplicationController
     @game_state = gs
   end
 
+  def accept_president_answer
+    gs = GameState.instance
+    @current_question = gs.current_question
+    @game_state = gs
+
+
+    if params[:luecke].present?
+      @current_question.update_attribute(:answer_luecke, params[:luecke].to_f)
+    end
+
+    if params[:rollinger].present?
+      @current_question.update_attribute(:answer_rollinger, params[:rollinger].to_f)
+    end
+
+    redirect_to action: :index
+  end
+
   def change_state
     GameState.instance.update_attribute(:state, params[:state])
 

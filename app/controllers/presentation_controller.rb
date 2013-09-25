@@ -18,13 +18,9 @@ class PresentationController < ApplicationController
 
   def guessing
     @current_question = GameState.instance.current_question
-
-    if @current_question.estimation?
-      render partial: 'showing_question', layout: false, locals: { question: @current_question }
-    elsif @current_question.choices?
-      @answers = @current_question.text_answers.where("count > 0").order("count DESC")
-      render partial: 'guessing', layout: false, locals: { question: @current_question, answers: @answers }
-    end
+    @min = 15
+    @max = 95
+    render partial: 'guessing', layout: false, locals: { question: @current_question, min: @min, max: @max }
   end
 
   def guessing_with_choices
@@ -62,6 +58,16 @@ class PresentationController < ApplicationController
 
     render json: result
   end
+
+  def president_answers
+    @current_question = GameState.instance.current_question
+
+    render json: {
+      answer_luecke: @current_question.answer_luecke,
+      answer_rollinger: @current_question.answer_rollinger
+    }
+  end
+
 
   def starting
     render partial: 'starting', layout: false

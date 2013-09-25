@@ -1,123 +1,175 @@
 [
-
-
 {
-  "text": "Wie viele Kilometer sind Sie heute angereist?",
-  "question_type": "estimation"
+  "question_type": "estimation",
+  "text":"In wieviel Fachbereiche bzw. Fakultäten wird diese Universität in drei Jahren gegliedert sein?",
+  "rounding_factor": 5
 },
 {
-  "text": "Bei wem haben Sie Ihre erste Mathe-Vorlesung gehört?",
-  "question_type": "choices",
-  "answers": [
-  { "content": "Bruns" },
-  { "content": "Meyer-Nieberg" },
-  { "content": "Reiffen" },
-  { "content": "Römer" },
-  { "content": "Spindler" },
-  { "content": "Trapp" },
-  { "content": "Vogt" },
-  { "content": "Zielke" }
-  ]
-},
-
-
-{
-  "text": "Wieviel Semester haben Sie bis zum Diplom/Master studiert?",
-  "question_type": "estimation"
+  "question_type": "estimation",
+  "text":"Wieviel Jahre sind Sie alt?",
+  "rounding_factor": 10
 },
 {
-  "text": "Welches Nebenfach haben Sie studiert?",
-  "question_type": "choices",
-   "answers": [
-  { "content": "Mathematik" },
-  { "content": "Informatik" },
-  { "content": "Physik" },
-  { "content": "Systemwissenschaften" },
-  { "content": "Chemie" },
-  { "content": "Philosophie" },
-  { "content": "BWL/VWL" },
-  { "content": "Biologie" }
-  ]
-},
-
-
-{
-  "text": "Wieviel Minuten nach dem Aufwachen checken Sie Ihre E-Mails?",
-  "question_type": "estimation"
+  "question_type": "estimation",
+  "text":"Wieviel km sind Sie heute angereist?",
+  "rounding_factor": 50
 },
 {
-  "text": "Mit welchem Verkehrsmittel sind Sie überwiegend zur Uni gekommen?",
-  "question_type": "choices",
-  "answers": [
-  { "content": "Auto" },
-  { "content": "Bahn" },
-  { "content": "Bus" },
-  { "content": "Fahrrad" },
-  { "content": "Flugzeug" },
-  { "content": "Inline-Skates" },
-  { "content": "Zu Fuß" }
-  ]
-},
-
-
-{
-  "text": "Wie viele Wörter enthält die Prüfungsordnung Bachelor Informatik?",
-  "question_type": "estimation"
+  "question_type": "estimation",
+  "text":"Wieviel Jahre sind Sie an der Universität Osnabrück angestellt?",
+  "rounding_factor": 5
 },
 {
-  "text": "Was war Ihr erstes Computer-Betriebssystem?",
-  "question_type": "choices",
-  "answers": [
-  { "content": "(MS)DOS" },
-  { "content": "Windows" },
-  { "content": "Mac OS" },
-  { "content": "Unix/Linux" },
-  { "content": "AmigaOS" },
-  { "content": "TOS" },
-  { "content": "Commodore Basic V2 (C64)" },
-  { "content": "OS/2" }
-  ]
-},
-
-
-
-{
-  "text": "Wieviel Kilogramm wiegen Sie?",
-  "question_type": "estimation"
+  "question_type": "estimation",
+  "text":"An wieviel Tagen in der Woche besuchen Sie die Mensa?",
+  "rounding_factor": 7
 },
 {
-  "text": "Was war Ihr Lieblingsessen in der Mensa?",
-  "question_type": "choices",
-  "answers": [
-  { "content": "Currywurst(eintopf)" },
-  { "content": "Gulaschsuppe" },
-  { "content": "Milchreis" },
-  { "content": "Pizza" },
-  { "content": "Pommes" },
-  { "content": "Schnitzel" },
-  { "content": "Spaghetti Bolognese" }
-  ]
-},
-
-
-
-{
-  "text": "Wie viele Prüfungen oder Klausuren haben Sie während Ihres Studiums nicht beim ersten Versuch bestanden?",
-  "question_type": "estimation"
+  "question_type": "estimation",
+  "text":"Wieviel Minuten nach dem Aufstehen rufen Sie Ihre E-Mails ab?",
+  "rounding_factor": 5
 },
 {
-  "text": "In welcher Mathe-Veranstaltung haben Sie am meisten gelitten?",
-  "question_type": "choices",
-  "answers": [
-  { "content": "Mathematikdidaktik" },
-  { "content": "Analysis" },
-  { "content": "Numerik" },
-  { "content": "Stochastik" },
-  { "content": "Differentialgleichungen" },
-  { "content": "Algebra" },
-  { "content": "Topologie" }
-  ]
+  "question_type": "estimation",
+  "text":"Nach wieviel Wochen wird Claus Rollinger seine Universität erstmalig wieder besuchen?",
+  "rounding_factor": 5
+},
+{
+  "question_type": "estimation",
+  "text":"Wieviel der jetzigen Vizepräsidenten sind nach 12 Monaten noch im Amt?",
+  "rounding_factor": 3
+},
+{
+  "question_type": "estimation",
+  "text":"Wieviele Jahre wird Wolfgang Lücke Präsident an der Universität Osnabrück sein?",
+  "rounding_factor": 5
+},
+{
+  "question_type": "estimation",
+  "text":"Aus wieviel Wörtern besteht die allgemeine Prüfungsordnung?",
+  "rounding_factor": 100
 }
-
-
 ]
+// [
+// 
+// 
+// {
+//   "text": "Wie viele Kilometer sind Sie heute angereist?",
+//   "question_type": "estimation"
+// },
+// {
+//   "text": "Bei wem haben Sie Ihre erste Mathe-Vorlesung gehört?",
+//   "question_type": "choices",
+//   "answers": [
+//   { "content": "Bruns" },
+//   { "content": "Meyer-Nieberg" },
+//   { "content": "Reiffen" },
+//   { "content": "Römer" },
+//   { "content": "Spindler" },
+//   { "content": "Trapp" },
+//   { "content": "Vogt" },
+//   { "content": "Zielke" }
+//   ]
+// },
+// 
+// 
+// {
+//   "text": "Wieviel Semester haben Sie bis zum Diplom/Master studiert?",
+//   "question_type": "estimation"
+// },
+// {
+//   "text": "Welches Nebenfach haben Sie studiert?",
+//   "question_type": "choices",
+//    "answers": [
+//   { "content": "Mathematik" },
+//   { "content": "Informatik" },
+//   { "content": "Physik" },
+//   { "content": "Systemwissenschaften" },
+//   { "content": "Chemie" },
+//   { "content": "Philosophie" },
+//   { "content": "BWL/VWL" },
+//   { "content": "Biologie" }
+//   ]
+// },
+// 
+// 
+// {
+//   "text": "Wieviel Minuten nach dem Aufwachen checken Sie Ihre E-Mails?",
+//   "question_type": "estimation"
+// },
+// {
+//   "text": "Mit welchem Verkehrsmittel sind Sie überwiegend zur Uni gekommen?",
+//   "question_type": "choices",
+//   "answers": [
+//   { "content": "Auto" },
+//   { "content": "Bahn" },
+//   { "content": "Bus" },
+//   { "content": "Fahrrad" },
+//   { "content": "Flugzeug" },
+//   { "content": "Inline-Skates" },
+//   { "content": "Zu Fuß" }
+//   ]
+// },
+// 
+// 
+// {
+//   "text": "Wie viele Wörter enthält die Prüfungsordnung Bachelor Informatik?",
+//   "question_type": "estimation"
+// },
+// {
+//   "text": "Was war Ihr erstes Computer-Betriebssystem?",
+//   "question_type": "choices",
+//   "answers": [
+//   { "content": "(MS)DOS" },
+//   { "content": "Windows" },
+//   { "content": "Mac OS" },
+//   { "content": "Unix/Linux" },
+//   { "content": "AmigaOS" },
+//   { "content": "TOS" },
+//   { "content": "Commodore Basic V2 (C64)" },
+//   { "content": "OS/2" }
+//   ]
+// },
+// 
+// 
+// 
+// {
+//   "text": "Wieviel Kilogramm wiegen Sie?",
+//   "question_type": "estimation"
+// },
+// {
+//   "text": "Was war Ihr Lieblingsessen in der Mensa?",
+//   "question_type": "choices",
+//   "answers": [
+//   { "content": "Currywurst(eintopf)" },
+//   { "content": "Gulaschsuppe" },
+//   { "content": "Milchreis" },
+//   { "content": "Pizza" },
+//   { "content": "Pommes" },
+//   { "content": "Schnitzel" },
+//   { "content": "Spaghetti Bolognese" }
+//   ]
+// },
+// 
+// 
+// 
+// {
+//   "text": "Wie viele Prüfungen oder Klausuren haben Sie während Ihres Studiums nicht beim ersten Versuch bestanden?",
+//   "question_type": "estimation"
+// },
+// {
+//   "text": "In welcher Mathe-Veranstaltung haben Sie am meisten gelitten?",
+//   "question_type": "choices",
+//   "answers": [
+//   { "content": "Mathematikdidaktik" },
+//   { "content": "Analysis" },
+//   { "content": "Numerik" },
+//   { "content": "Stochastik" },
+//   { "content": "Differentialgleichungen" },
+//   { "content": "Algebra" },
+//   { "content": "Topologie" }
+//   ]
+// }
+// 
+// 
+// ]

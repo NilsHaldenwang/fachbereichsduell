@@ -15,20 +15,12 @@
 
 <% elsif @game_state.guessing? %>
 
-  <% if @current_question.choices? %>
-    <%= bootstrap_admin_button_form("Möglichkeiten aufdecken", "/admin/change_state", state: GameState::STATE_GUESSING_WITH_CHOICES) %>
-  <% end %>
+  <%= bootstrap_admin_button_form("Auflösung", "/admin/change_state", { state: GameState::STATE_SHOWING_ANSWER }, "btn-danger pull-right") %>
 
-  <%= bootstrap_admin_button_form("Auflösung", "/admin/change_state", { state: GameState::STATE_SHOWING_ANSWERS }, "btn-danger pull-right") %>
-
-<% elsif @game_state.guessing_with_choices? %>
-
-  <%= bootstrap_admin_button_form("Auflösung", "/admin/change_state", { state: GameState::STATE_SHOWING_ANSWERS }, "btn-danger pull-right") %>
-
-<% elsif @game_state.showing_answers? %>
+<% elsif @game_state.showing_answer? %>
 
   <% if Question.find_by_number(GameState.instance.question_number + 1) %>
-    <%= bootstrap_admin_button_form("Nächste Frage", "/admin/next_question", { state: GameState::STATE_GUESSING_WITH_CHOICES }, "btn-danger pull-right") %>
+    <%= bootstrap_admin_button_form("Nächste Frage", "/admin/next_question", { state: GameState::STATE_SHOWING_QUESTION }, "btn-danger pull-right") %>
   <% else %>
     <%= bootstrap_admin_button_form("Spiel beenden", "/admin/change_state", { state: GameState::STATE_GAME_OVER }, "btn-danger pull-right") %>
   <% end %>
@@ -37,55 +29,19 @@
 
 <div style='margin-bottom: 50px;'>&nbsp;</div>
 
-<% if @current_question.choices? %>
-  <% if @game_state.guessing? || @game_state.guessing_with_choices? %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Punkte</th>
-          <th>Team 1</th>
-          <th>Team 2</th>
-          <th>Geraten von</th>
-        </tr>
-      </thead>
+<% if @game_state.guessing? %>
 
-      <tbody>
-        <% answers = @current_question.text_answers.order("count DESC") %>
-        <% answers.each do |answer| %>
-          <tr>
-            <td><%= answer.normalized_points %></td>
+  <h2>Antworten der Präsidenten (PUNKT, kein KOMMA)</h2>
 
-            <% if answer.answered_by_team == 1 %>
-              <td><%= bootstrap_admin_button_form(answer.content, "/admin/remove_answer", { team: 1, answer_id: answer.id }, "btn-danger") %></td>
-            <% else %>
-              <td><%= bootstrap_admin_button_form(answer.content, "/admin/assign_answer", team: 1, answer_id: answer.id) %></td>
-            <% end %>
+  <form method="post" action="/admin/accept_president_answer">
+    Rollinger: <input type="text" name="rollinger" value="<%= @current_question.answer_rollinger %>"></input>
+    Luecke: <input type="text" name="luecke" value="<%= @current_question.answer_luecke %>"></input>
+    <input type="submit" name="abschicken" value="einloggen"></input>
+  </form>
 
-            <% if answer.answered_by_team == 2 %>
-              <td><%= bootstrap_admin_button_form(answer.content, "/admin/remove_answer", { team: 2, answer_id: answer.id }, "btn-danger") %></td>
-            <% else %>
-              <td><%= bootstrap_admin_button_form(answer.content, "/admin/assign_answer", team: 2, answer_id: answer.id) %></td>
-            <% end %>
-
-            <td><%= answer.answered_by_team %></td>
-          </tr>
-        <% end %>
-
-        <tr>
-          <td>X</td>
-          <td><%= bootstrap_admin_button_form("X", "/admin/add_x", { team: 1 }, "btn-danger") %></td>
-          <td><%= bootstrap_admin_button_form("X", "/admin/add_x", { team: 2 }, "btn-danger") %></td>
-        </tr>
-
-      </tbody>
-    </table>
-  <% end %>
-<% else # estimate %>
-  <% if @game_state.guessing? %>
-    <h2>Durchschnitt: <%= @current_question.average_estimation %></h2>
-    <% @current_question.estimation_answers.order("value DESC").each do |estimation_answer| %>
-      <%= bootstrap_admin_button_form(estimation_answer.value, "/admin/remove_estimation_answer", { answer_id: estimation_answer.id }, "btn-danger") %>
-    <% end %>
+  <h2>Durchschnitt: <%= @current_question.average_estimation %></h2>
+  <% @current_question.estimation_answers.order("value DESC").each do |estimation_answer| %>
+    <%= bootstrap_admin_button_form(estimation_answer.value, "/admin/remove_estimation_answer", { answer_id: estimation_answer.id }, "btn-danger") %>
   <% end %>
 <% end %>
 

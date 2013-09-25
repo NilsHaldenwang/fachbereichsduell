@@ -10,6 +10,7 @@ Fachbereichsduell::Application.routes.draw do
   get "presentation/showing_question"
   get "presentation/showing_answers"
   get "presentation/answer_state/:id" => "presentation#answer_state"
+  get "presentation/president_answers"
 
   get "admin/index"
   post "admin/change_state"
@@ -18,6 +19,7 @@ Fachbereichsduell::Application.routes.draw do
   post "admin/add_x"
   post "admin/next_question"
   post "admin/remove_estimation_answer"
+  post "admin/accept_president_answer"
 
   root to: "questions#show"
 
