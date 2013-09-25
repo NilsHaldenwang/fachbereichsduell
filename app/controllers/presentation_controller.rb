@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class PresentationController < ApplicationController
   def index
     render :index, layout: false
@@ -107,9 +108,9 @@ class PresentationController < ApplicationController
 
     winner = nil
     if team_1_points > team_2_points
-      winner = "Mathematik"
+      winner = "Prof. Rollinger"
     elsif team_2_points > team_1_points
-      winner = "Informatik"
+      winner = "Prof. Lücke"
     else
       winner = "Jeder"
     end
