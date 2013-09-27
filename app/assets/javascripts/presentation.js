@@ -1,6 +1,8 @@
 var current_state = "";
 
 var observe_view_state = function(){
+  observe_points();
+
   $.getJSON('view_state', function (data) {
     if(data.view_state !== current_state) {
       current_state = data.view_state;
@@ -11,7 +13,6 @@ var observe_view_state = function(){
         $("#ajax-container").html(html);
 
         //change round if needed and update points
-        observe_points();
         observe_round();
 
       });
@@ -34,4 +35,10 @@ var observe_round = function(){
 
 $(function(){
   setInterval(observe_view_state, 1000);
+
+  $("#answer_audio").get(0).volume = 0;
+  $("#answer_audio").get(0).play();
+
+  $("#points_audio").get(0).volume = 0;
+  $("#points_audio").get(0).play();
 });

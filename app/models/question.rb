@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  attr_accessible :number, :question_type, :text, :answer_luecke, :answer_rollinger, :rounding_factor
+  attr_accessible :number, :question_type, :text, :answer_luecke, :answer_rollinger, :rounding_factor, :min, :max
 
   has_many :text_answers
   has_many :estimation_answers

@@ -20,6 +20,7 @@ Fachbereichsduell::Application.routes.draw do
   post "admin/next_question"
   post "admin/remove_estimation_answer"
   post "admin/accept_president_answer"
+  post "admin/update_points"
 
   root to: "questions#show"
 

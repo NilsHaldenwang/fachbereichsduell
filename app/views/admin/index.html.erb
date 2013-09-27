@@ -17,6 +17,8 @@
 
   <%# <%= bootstrap_admin_button_form("Nächste Frage", "/admin/change_state", { state: GameState::STATE_SHOWING_QUESTION }, "btn-danger pull-right") %>
 
+  <%= bootstrap_admin_button_form("Punkte updaten", "/admin/update_points", {}, "btn-danger") %>
+
   <% if Question.find_by_number(GameState.instance.question_number + 1) %>
     <%= bootstrap_admin_button_form("Nächste Frage", "/admin/next_question", { state: GameState::STATE_SHOWING_QUESTION }, "btn-danger pull-right") %>
   <% else %>

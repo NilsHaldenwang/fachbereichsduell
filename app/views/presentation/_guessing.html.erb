@@ -5,7 +5,7 @@
     <td valign="center">
       <center>
         <p style="font-size: 30px;">Durchschnitt: <%= mean.to_s.gsub(".", ",") %></p>
-        <p style="margin-top: -20px; font-size: 20px;">Prof. Rollinger: <span id='rollinger_diff'></span> | Prof. Lücke: <span id='luecke_diff'></span></p>
+        <p style="margin-top: -20px; font-size: 20px;">Rollinger: <span id='rollinger_diff'></span> | Lücke: <span id='luecke_diff'></span></p>
       </center>
     </td>
   </tr>
@@ -82,19 +82,20 @@
       $.extend({}, lineConf, {points: [940, 235, 940, 265]})
       );
 
-  for(i = 1; i <= 15; i+=1){
+/*  for(i = 1; i <= 15; i+=1){
     line = new Kinetic.Line(
       $.extend({}, lineConf, {points: [10 + 62 * i, 240, 10 + 62 * i, 260], strokeWidth: 2})
         );
     layer.add(line);
   }
+*/
 
   var guessValueToLineLocation = function(guess){
     return 930 * (1.0 * (guess - min) / (max - min)) + 10;
   }
 
   var guessValueToHeadLocation = function(guess) {
-    return Math.max(Math.min(guessValueToLineLocation(guess) - 36, 940 - 280), 10);
+    return Math.max(Math.min(guessValueToLineLocation(guess) - 36, 940 - 200), 10);
   }
 
   var drawHeadWithLabel = function(president, guess) {
@@ -129,7 +130,7 @@
       var rollingerLabelText = new Kinetic.Text({
           x: 80,
           y: 305,
-          text: president == 'rollinger' ? "Prof. Rollinger" : "Prof. Lücke",
+          text: president == 'rollinger' ? "Rollinger" : "Lücke",
           fontSize: 30,
           fontFamily: "Tahoma",
           fill: "black"
@@ -181,8 +182,61 @@
 
   var lueckeDrawn = false;
   var rollingerDrawn = false;
+  var answersShown = false;
   var lueckeDiff = null;
   var rollingerDiff = null;
+  var answerLayer = new Kinetic.Layer();
+
+  var drawAnswers = function(){
+    $.each(answers, function(idx, obj){
+        setTimeout(function(){
+            animateAnswer(obj);
+        }, Math.random() * 5000);
+      });
+  };
+
+  $(document).bind("keyup.space", function(event){
+      if(event.which == 32){
+        if(!answersShown){
+          $("#points_audio").get(0).volume = 1;
+          $("#points_audio").get(0).play();
+          drawAnswers();
+          answersShown = true;
+        } else {
+          $(document).unbind("keyup.space");
+
+
+          circle = new Kinetic.Circle({
+            x: guessValueToLineLocation(mean),
+            y: 250,
+            radius: 0,
+            fill: "green",
+            stroke: "black",
+            strokeWidth: 1,
+            opacity: 0
+              });
+
+          answerLayer.add(circle);
+
+          circleTween = new Kinetic.Tween({
+            node: circle,
+            duration: 1,
+            opacity: 1,
+            radius: 20
+              });
+
+          $("#answer_audio").get(0).volume = 1;
+          $("#answer_audio").get(0).play();
+
+          circleTween.play();
+
+          setTimeout(function(){
+              $("#answer_table").fadeIn("slow");
+            }, 1000);
+
+        }
+      }
+      });
 
   var observePresidentAnswers = function(){
     $.getJSON('president_answers', function(data){
@@ -203,39 +257,6 @@
           $("#luecke_diff").text((lueckeDiff > 0 ? "+" : "") + lueckeDiff.toFixed(2).toString().replace(".", ","));
           $("#rollinger_diff").text((rollingerDiff > 0 ? "+" : "") + rollingerDiff.toFixed(2).toString().replace(".", ","));
 
-          setTimeout(function(){
-            $.each(answers, function(idx, obj){
-                setTimeout(function(){
-                    animateAnswer(obj);
-                }, Math.random() * 5000);
-              });
-           }, 2000);
-          setTimeout(function(){
-              circle = new Kinetic.Circle({
-                x: guessValueToLineLocation(mean),
-                y: 250,
-                radius: 0,
-                fill: "green",
-                opacity: 0
-                  });
-
-              layer.add(circle);
-
-              circleTween = new Kinetic.Tween({
-                node: circle,
-                duration: 1,
-                opacity: 1,
-                radius: 15
-                  });
-
-              circleTween.play();
-
-              setTimeout(function(){
-                  $("#answer_table").fadeIn("slow");
-                }, 1000);
-
-            }, 8000);
-
         }
     });
   };
@@ -245,9 +266,8 @@
     intervalHandle = setInterval(observePresidentAnswers, 1000);
   });
 
-  var answerLayer = new Kinetic.Layer();
   stage.add(answerLayer);
-  var randOffset = 5;
+  var randOffset = 15;
   var startRadius = 15;
   var targetRadius = 5;
 
@@ -258,19 +278,22 @@
     xOffset = Math.cos(randomArc) * h;
 
     xPos = guessValueToLineLocation(value) + xOffset;
-    yPos = 247 + yOffset;
+    yPos = 244 + yOffset;
 
     circle = new Kinetic.Circle({
       x: xPos,
       y: yPos,
-      radius: startRadius,
+      radius: targetRadius, //startRadius,
       fill: "red",
-      opacity: 0
+      stroke: "black",
+      strokeWidth: 1,
+      opacity: 1 // 0
         });
 
     answerLayer.add(circle);
+    answerLayer.draw();
 
-    var circleTween = new Kinetic.Tween({
+/*    var circleTween = new Kinetic.Tween({
       node: circle,
       duration: 0.5,
       opacity: 1,
@@ -278,6 +301,7 @@
         });
 
     circleTween.play();
+    */
   }
 
 </script>

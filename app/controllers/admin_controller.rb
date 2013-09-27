@@ -97,7 +97,7 @@ class AdminController < ApplicationController
     redirect_to action: :index
   end
 
-  def next_question
+  def update_points
     gs = GameState.instance
 
     cq = gs.current_question
@@ -112,6 +112,14 @@ class AdminController < ApplicationController
     else
       gs.team_1_points += 1
     end
+
+    gs.save
+
+    redirect_to action: :index
+  end
+
+  def next_question
+    gs = GameState.instance
 
     gs.question_number += 1
     gs.state = GameState::STATE_SHOWING_QUESTION

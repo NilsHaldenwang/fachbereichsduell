@@ -26,9 +26,9 @@ class PresentationController < ApplicationController
     @max = @current_question.rounding_factor * (@answers.max.to_i / @current_question.rounding_factor) + @current_question.rounding_factor
 
     # TODO: REMOVE FAKE ANTWORTEN
-    100.times do |i|
-      @answers << ((@max - @min) * rand + @min).round(2)
-    end
+    # 100.times do |i|
+    #   @answers << ((@max - @min) * rand + @min).round(2)
+    # end
 
     @mean = ( @answers.inject(:+) / @answers.size.to_f ).round(2)
 
@@ -108,9 +108,9 @@ class PresentationController < ApplicationController
 
     winner = nil
     if team_1_points > team_2_points
-      winner = "Prof. Rollinger"
+      winner = "Claus Rollinger"
     elsif team_2_points > team_1_points
-      winner = "Prof. Lücke"
+      winner = "Wolfgang Lücke"
     else
       winner = "Jeder"
     end

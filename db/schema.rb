@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924134123) do
+ActiveRecord::Schema.define(:version => 20130927111426) do
 
   create_table "answerers", :force => true do |t|
     t.string   "ip"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20130924134123) do
     t.float    "answer_luecke"
     t.float    "answer_rollinger"
     t.integer  "rounding_factor"
+    t.integer  "min"
+    t.integer  "max"
   end
 
   add_index "questions", ["number"], :name => "index_questions_on_number", :unique => true
